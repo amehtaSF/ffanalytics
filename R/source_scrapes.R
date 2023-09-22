@@ -26,7 +26,7 @@ scrape_cbs = function(pos = c("QB", "RB", "WR", "TE", "K", "DST"), season = NULL
     scrape_link = paste0("https://www.cbssports.com/fantasy/football/stats/", pos, "/",
                          season, "/", scrape_week, "/projections/nonppr/")
 
-    Sys.sleep(2L) # temporary, until I get an argument for honoring the crawl delay
+    #Sys.sleep(2L) # temporary, until I get an argument for honoring the crawl delay
     cat(paste0("Scraping ", pos, " projections from"), scrape_link, sep = "\n  ")
 
     html_page = site_session %>%
@@ -203,7 +203,7 @@ scrape_nfl = function(pos = c("QB", "RB", "WR", "TE", "K", "DST"), season = NULL
       dplyr::select(id, src_id = nfl_id, any_of("player"), pos, team, dplyr::everything())
 
 
-    Sys.sleep(2L) # temporary, until I get an argument for honoring the crawl delay
+    #Sys.sleep(2L) # temporary, until I get an argument for honoring the crawl delay
 
     # Removing all NA columns
     Filter(function(x) any(!is.na(x)), out_df)
@@ -264,7 +264,7 @@ scrape_fantasysharks <- function(pos = c("QB", "RB", "WR", "TE", "K", "DST", "DL
     scrape_link <- paste0("https://www.fantasysharks.com/apps/bert/forecasts/projections.php?csv=1&Sort=",
                           "&League=-1&Position=",position, "&scoring=1&Segment=", segment, "&uid=4")
 
-    Sys.sleep(2L) # temporary, until I get an argument for honoring the crawl delay
+    #Sys.sleep(2L) # temporary, until I get an argument for honoring the crawl delay
     cat(paste0("Scraping ", pos, " projections from"), scrape_link, sep = "\n  ")
 
     pos_df = data.table::fread(scrape_link, data.table = FALSE, showProgress = FALSE)
@@ -343,7 +343,7 @@ scrape_numberfire <- function(pos = c("QB", "RB", "WR", "TE", "K", "DST", "LB", 
       week > 0 ~ paste0("https://www.numberfire.com/nfl/fantasy/fantasy-football-projections/", position)
       )
 
-    Sys.sleep(2L) # temporary, until I get an argument for honoring the crawl delay
+    #Sys.sleep(2L) # temporary, until I get an argument for honoring the crawl delay
     cat(paste0("Scraping ", pos, " projections from"), scrape_link, sep = "\n  ")
 
 
@@ -618,7 +618,7 @@ scrape_fleaflicker <- function(pos = c("QB", "RB", "WR", "TE", "K", "DST", "DL",
 
 
       if(i != 1L) {
-        Sys.sleep(2L)
+        #Sys.sleep(2L)
       }
 
       # 20 rows of player data by position
@@ -842,7 +842,7 @@ scrape_fftoday <- function(pos = c("QB", "RB", "WR", "TE", "K", "DST", "DL", "LB
     # Going through n pages (depending on position) pages
     while (i <= pos_pages) {
 
-      Sys.sleep(2L)
+      #Sys.sleep(2L)
 
       if(week == 0) {
         page_link = paste0("https://www.fftoday.com/rankings/playerproj.php?Season=",
@@ -969,7 +969,7 @@ scrape_fantasypros = function(pos = c("QB", "RB", "WR", "TE", "K", "DST"),
     scrape_link = paste0("https://www.fantasypros.com/nfl/projections/",
                          tolower(pos), scrape_week)
 
-    Sys.sleep(2L) # temporary, until I get an argument for honoring the crawl delay
+    #Sys.sleep(2L) # temporary, until I get an argument for honoring the crawl delay
     cat(paste0("Scraping ", pos, " projections from"), scrape_link, sep = "\n  ")
 
     html_page = site_session %>%
@@ -1056,7 +1056,7 @@ scrape_rtsports = function(pos = c("QB", "RB", "WR", "TE", "K", "DST"),
 
   l_pos = lapply(pos, function(x) {
     if(x != pos[1]) {
-      Sys.sleep(5)
+      #Sys.sleep(5)
     }
     req = httr2::request(base_url) %>%
       httr2::req_url_query(POS = rts_pos_idx[x])
@@ -1134,7 +1134,7 @@ scrape_espn = function(pos = c("QB", "RB", "WR", "TE", "K", "DST"), season = NUL
   l_pos = lapply(position, function(pos){
 
     if(pos != position[1]) {
-      Sys.sleep(2)
+      #Sys.sleep(2)
     }
 
     pos_idx = slot_nums[pos]
